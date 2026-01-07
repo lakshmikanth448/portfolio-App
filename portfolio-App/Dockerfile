@@ -3,7 +3,7 @@ FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
-COPY src ./main
+COPY src .src/main
 RUN mvn clean package -DskipTests
 
 # STAGE 2: Deploy
@@ -13,4 +13,5 @@ RUN rm -rf webapps/*
 COPY --from=build /app/target/*.war webapps/ROOT.war
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
+
 
