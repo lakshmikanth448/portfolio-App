@@ -2,7 +2,7 @@
 # STAGE 1: Build with Maven
 # =========================
 FROM maven:3.9-eclipse-temurin-17 AS build
-WORKDIR /app
+WORKDIR /portfolio-App
 
 # Copy pom first for dependency caching
 COPY pom.xml .
@@ -27,4 +27,5 @@ COPY --from=build /app/target/*.war webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
+
 
