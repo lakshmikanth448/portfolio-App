@@ -5,20 +5,19 @@
 <hibernate-configuration>
  <session-factory>
 
-  <property name="hibernate.connection.driver_class">
-   com.mysql.cj.jdbc.Driver
-  </property>
+<!-- Updated for 2026 Railway Standards -->
+<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-  <property name="hibernate.connection.url">
-   mysql://root:QhwivjLehQPIWokImxuRMHUJRasXbATD@trolley.proxy.rlwy.net:16616/railway
-  </property>
+<!-- Use JDBC protocol and environment variables -->
+<property name="hibernate.connection.url">
+    jdbc:mysql://${env.MYSQLHOST}:${env.MYSQLPORT}/${env.MYSQLDATABASE}
+</property>
 
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password">QhwivjLehQPIWokImxuRMHUJRasXbATD</property>
+<property name="hibernate.connection.username">${env.MYSQLUSER}</property>
+<property name="hibernate.connection.password">${env.MYSQLPASSWORD}</property>
 
-  <property name="hibernate.dialect">
-   org.hibernate.dialect.MySQL8Dialect
-  </property>
+<!-- Recommended dialect for modern MySQL -->
+<property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
