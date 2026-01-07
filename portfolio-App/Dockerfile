@@ -2,8 +2,8 @@
 FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 # Copy your project files
-COPY pom.xml .
-COPY src ./src
+COPY pom.xml 
+COPY src ./src/main
 # Build the project (skipping tests for speed)
 RUN mvn clean package -DskipTests
 
@@ -18,3 +18,4 @@ COPY --from=build /app/target/*.war webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
+
