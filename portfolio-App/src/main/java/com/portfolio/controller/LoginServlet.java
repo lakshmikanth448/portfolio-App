@@ -28,5 +28,14 @@ public class LoginServlet extends HttpServlet {
             res.sendRedirect("login.jsp?error=true");
         }
     }
+
+    // ✅ HANDLE GET SAFELY
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws IOException {
+
+        res.sendRedirect("login.jsp");
+    }
 }
+}
+
 
