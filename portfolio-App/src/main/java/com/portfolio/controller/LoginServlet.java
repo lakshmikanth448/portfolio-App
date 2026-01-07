@@ -14,6 +14,13 @@ import com.portfolio.model.User;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+    // Handles GET requests (like opening the login page)
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws IOException, ServletException {
+        res.sendRedirect("login.jsp");
+    }
+
+    // Handles POST requests (form submission)
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
@@ -28,14 +35,10 @@ public class LoginServlet extends HttpServlet {
             res.sendRedirect("login.jsp?error=true");
         }
     }
-
-    // ✅ HANDLE GET SAFELY
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
-            throws IOException {
-
-        res.sendRedirect("dashboard.jsp");
-    }
 }
+
+
+
 
 
 
