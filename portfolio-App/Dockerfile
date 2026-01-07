@@ -1,22 +1,20 @@
-# Step 1: Use a Tomcat base image with Java 17+
+# STAGE 1: Build the WAR file using Maven
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /app
+# Copy your project files
+COPY pom.xml .
+COPY src ./src
+# Build the project (skipping tests for speed)
+RUN mvn clean package -DskipTests
+
+# STAGE 2: Deploy to Tomcat
 FROM tomcat:10.1-jdk17-temurin
-
-# Step 2: Set working directory inside the container
 WORKDIR /usr/local/tomcat
-
-# Step 3: Remove default Tomcat apps to keep it clean
+# Remove default apps
 RUN rm -rf webapps/*
+# Copy the built WAR from the previous 'build' stage
+# Railpack/Maven usually names the file based on your pom.xml
+COPY --from=build /app/target/*.war webapps/ROOT.war
 
-# Step 4: Copy your WAR file from your local target folder 
-# into the Tomcat webapps directory as ROOT.war
-COPY target/portfolio-App.war webapps/ROOT.war
-
-# Step 5: (Optional) If you have a separate MySQL driver JAR, 
-# you can copy it to Tomcat's lib folder
-# COPY lib/mysql-connector-j-x.x.x.jar lib/
-
-# Step 6: Expose the default Tomcat port
 EXPOSE 8080
-
-# Step 7: Start Tomcat
 CMD ["catalina.sh", "run"]
