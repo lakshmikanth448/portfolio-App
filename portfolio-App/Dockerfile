@@ -1,15 +1,14 @@
 # =========================
-# STAGE 1: Build WAR
+# STAGE 1: Build with Maven
 # =========================
 FROM maven:3.9-eclipse-temurin-17 AS build
-
 WORKDIR /app
 
-# Copy POM first (dependency cache)
+# Copy pom first for dependency caching
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Copy source code
+# Copy source and config
 COPY src ./src
 COPY hibernate.cfg.xml .
 
@@ -17,16 +16,13 @@ COPY hibernate.cfg.xml .
 RUN mvn clean package -DskipTests
 
 # =========================
-# STAGE 2: Deploy on Tomcat
+# STAGE 2: Tomcat Runtime
 # =========================
 FROM tomcat:10.1-jdk17-temurin
 
 WORKDIR /usr/local/tomcat
-
-# Remove default apps
 RUN rm -rf webapps/*
 
-# Copy WAR
 COPY --from=build /app/target/*.war webapps/ROOT.war
 
 EXPOSE 8080
