@@ -8,7 +8,7 @@ COPY pom.xml .
 RUN mvn dependency:go-offline # Download dependencies
 
 # Copy the source code folder you have (src/main)
-COPY main
+COPY src
 
 # Build the project into a .war file in the target/ folder
 RUN mvn clean package -DskipTests
@@ -29,6 +29,7 @@ EXPOSE 8080
 
 # Start the Tomcat server
 CMD ["catalina.sh", "run"]
+
 
 
 
