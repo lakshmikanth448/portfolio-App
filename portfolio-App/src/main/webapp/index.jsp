@@ -4,9 +4,9 @@
 <%
     // If user is already logged in, go to dashboard
     if (session.getAttribute("user") != null) {
-        response.sendRedirect("dashboard.jsp");
+        response.sendRedirect(request.getContextPath() +"/dashboard.jsp");
     } else {
         // Otherwise, go to login page
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(request.getContextPath() +"/login.jsp");
     }
 %>
