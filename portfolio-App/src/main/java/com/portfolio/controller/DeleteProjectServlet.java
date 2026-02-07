@@ -36,7 +36,8 @@ public class DeleteProjectServlet extends HttpServlet {
         tx.commit();
         session.close();
 
-        resp.sendRedirect("dashboard.jsp");
+        resp.sendRedirect(request.getContextPath() + "dashboard.jsp");
     }
 }
+
 
