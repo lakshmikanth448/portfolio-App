@@ -5,20 +5,23 @@
 <hibernate-configuration>
  <session-factory>
 
-  <property name="hibernate.connection.driver_class">
-   com.mysql.cj.jdbc.Driver
-  </property>
+<!-- Updated for 2026 Railway Standards -->
+<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-  <property name="hibernate.connection.url">
-   jdbc:mysql://localhost:3306/portfolio_db
-  </property>
+  <!-- <property name="hibernate.connection.url">mysql://root:fbdkPuFalBwxnbTSjIbQvcfFmhUZfOPg@tramway.proxy.rlwy.net:36599/railway</property>
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password">fbdkPuFalBwxnbTSjIbQvcfFmhUZfOPg</property> -->
+  
+        <property name="hibernate.connection.url">
+            jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        </property>
 
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password">760934</property>
+        <property name="hibernate.connection.username">${MYSQLUSER}</property>
+        <property name="hibernate.connection.password">${MYSQLPASSWORD}</property>
 
-  <property name="hibernate.dialect">
-   org.hibernate.dialect.MySQL8Dialect
-  </property>
+
+<!-- Recommended dialect for modern MySQL -->
+<property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
