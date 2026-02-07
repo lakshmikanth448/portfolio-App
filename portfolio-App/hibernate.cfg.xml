@@ -8,9 +8,9 @@
 <!-- Updated for 2026 Railway Standards -->
 <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-  <property name="hibernate.connection.url">${MYSQL_PUBLIC_URL}</property>
-<property name="hibernate.connection.username">${DB_USERNAME}</property>
-<property name="hibernate.connection.password">${DB_PASSWORD}</property>
+  <property name="hibernate.connection.url">mysql://root:fbdkPuFalBwxnbTSjIbQvcfFmhUZfOPg@tramway.proxy.rlwy.net:36599/railway</property>
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password">fbdkPuFalBwxnbTSjIbQvcfFmhUZfOPg</property>
 
 
 <!-- Recommended dialect for modern MySQL -->
