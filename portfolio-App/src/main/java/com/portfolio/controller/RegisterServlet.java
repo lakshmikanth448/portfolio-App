@@ -52,6 +52,7 @@ public class RegisterServlet extends HttpServlet {
 
 
         new UserDAO().saveUser(u);
-        res.sendRedirect("login.jsp");
+        res.sendRedirect(request.getContextPath() + "login.jsp");
     }
 }
+
