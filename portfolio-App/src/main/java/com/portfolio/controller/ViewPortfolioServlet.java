@@ -25,7 +25,7 @@ public class ViewPortfolioServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
-            resp.sendRedirect("login.jsp");
+            resp.sendRedirect("/login.jsp");
             return;
         }
 
@@ -35,6 +35,7 @@ public class ViewPortfolioServlet extends HttpServlet {
         req.setAttribute("user", user);
         req.setAttribute("projects", projects);
 
-        req.getRequestDispatcher("portfolio.jsp").forward(req, resp);
+        req.getRequestDispatcher("/portfolio.jsp").forward(req, resp);
     }
+
 }
