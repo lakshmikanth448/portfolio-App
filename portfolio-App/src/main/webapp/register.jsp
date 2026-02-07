@@ -17,7 +17,7 @@
 <div class="container">
     <h2>User Registration</h2>
 
-    <form action="register" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
         Name:
         <input type="text" name="name" required>
 
@@ -41,8 +41,9 @@
 
     <br>
     Already registered?
-    <a href="login.jsp">Login</a>
+    <a href="${pageContext.request.contextPath}/login.jsp">Login</a>
 </div>
 
 </body>
 </html>
+
