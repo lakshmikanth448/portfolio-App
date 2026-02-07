@@ -17,7 +17,7 @@
 <div class="container">
     <h2>User Login</h2>
 
-    <form action="login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post">
         Email:
         <input type="email" name="email" required>
 
@@ -29,7 +29,7 @@
 
     <br>
     New user?
-    <a href="register.jsp">Register</a>
+    <a href="${pageContext.request.contextPath}/register.jsp">Register</a>
 
     <%
         if (request.getParameter("error") != null) {
@@ -42,3 +42,4 @@
 
 </body>
 </html>
+
