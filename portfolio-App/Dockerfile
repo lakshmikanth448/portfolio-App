@@ -14,9 +14,15 @@ RUN mvn clean package -DskipTests
 FROM tomcat:9.0-jdk17-temurin
 WORKDIR /usr/local/tomcat
 
+
+# 🔧 Disable Tomcat shutdown port (FIXES Render error)
+RUN sed -i 's/port="8005"/port="-1"/' conf/server.xml
+
+# Clean default apps
 RUN rm -rf webapps/*
 
 COPY --from=build /app/target/*.war webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
+
