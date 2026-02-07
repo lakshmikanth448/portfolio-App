@@ -1,4 +1,4 @@
-# ===== STAGE 1: BUILD =====
+# ===== STAGE 1 =====
 FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
@@ -10,20 +10,12 @@ COPY portfolio-App/hibernate.cfg.xml .
 
 RUN mvn clean package -DskipTests
 
-
-# ===== STAGE 2: RUN =====
-FROM tomcat:10.1-jdk17-temurin
+# ===== STAGE 2 =====
+FROM tomcat:9.0-jdk17-temurin
 WORKDIR /usr/local/tomcat
-
-# 🔧 Disable Tomcat shutdown port (FIXES Render error)
-RUN sed -i 's/port="8005"/port="-1"/' conf/server.xml
-
-# Clean default apps
 RUN rm -rf webapps/*
 
-# Deploy WAR
 COPY --from=build /app/target/*.war webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
-
