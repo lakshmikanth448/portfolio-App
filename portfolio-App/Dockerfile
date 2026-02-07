@@ -7,8 +7,10 @@ COPY pom.xml .
 RUN mvn dependency:go-offline
 
 # Copy source and hibernate config
-COPY src ./src
-COPY hibernate.cfg.xml . .
+COPY portfolio-App/pom.xml .
+COPY portfolio-App/src ./src
+COPY portfolio-App/hibernate.cfg.xml .
+
 
 # Build WAR
 RUN mvn clean package -DskipTests
@@ -25,5 +27,6 @@ COPY --from=build /app/target/*.war webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
+
 
 
