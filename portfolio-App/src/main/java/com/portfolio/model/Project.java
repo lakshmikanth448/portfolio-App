@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "projects")
 public class Project {
+    public Project() {} // REQUIRED
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,3 +85,4 @@ public class Project {
         this.user = user;
     }
 }
+
