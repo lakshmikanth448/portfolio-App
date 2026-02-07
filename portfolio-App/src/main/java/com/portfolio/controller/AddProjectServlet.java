@@ -28,7 +28,8 @@ public class AddProjectServlet extends HttpServlet {
         p.setUser(user);
 
         new ProjectDAO().saveProject(p);
-        res.sendRedirect("dashboard.jsp");
+        res.sendRedirect(request.getContextPath() + "dashboard.jsp");
     }
 }
+
 
