@@ -1,4 +1,4 @@
-# ===== STAGE 1 =====
+# ===== STAGE 1: BUILD =====
 FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
@@ -10,9 +10,10 @@ COPY portfolio-App/hibernate.cfg.xml .
 
 RUN mvn clean package -DskipTests
 
-# ===== STAGE 2 =====
+# ===== STAGE 2: RUN =====
 FROM tomcat:9.0-jdk17-temurin
 WORKDIR /usr/local/tomcat
+
 RUN rm -rf webapps/*
 
 COPY --from=build /app/target/*.war webapps/ROOT.war
