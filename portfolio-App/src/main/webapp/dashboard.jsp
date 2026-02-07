@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -46,4 +46,5 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
 </body>
 </html>
+
 
