@@ -37,7 +37,7 @@
 
             <a href="<%= p.getProjectLink() %>" target="_blank">Project Link</a>
             |
-            <a href="deleteProject?id=<%= p.getId() %>"
+            <a href="${pageContext.request.contextPath}/deleteProject?id=<%= p.getId() %>"
                onclick="return confirm('Delete this project?')">
                Delete
             </a>
@@ -47,8 +47,9 @@
     %>
 
     <br>
-    <a href="dashboard.jsp">Back to Dashboard</a>
+    <a href="${pageContext.request.contextPath}/dashboard.jsp">Back to Dashboard</a>
 </div>
 
 </body>
 </html>
+
