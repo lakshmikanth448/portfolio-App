@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
     // Handles GET requests (like opening the login page)
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        res.sendRedirect(request.getContextPath() + "login.jsp");
+        res.sendRedirect(req.getContextPath() + "/login.jsp");
     }
 
     // Handles POST requests (form submission)
@@ -30,12 +30,13 @@ public class LoginServlet extends HttpServlet {
 
         if(user != null) {
             req.getSession().setAttribute("user", user);
-            res.sendRedirect(request.getContextPath() + "dashboard.jsp");
+            res.sendRedirect(req.getContextPath() + "/dashboard.jsp");
         } else {
-            res.sendRedirect(request.getContextPath() + "login.jsp?error=true");
+            res.sendRedirect(req.getContextPath() + "/login.jsp?error=true");
         }
     }
 }
+
 
 
 
