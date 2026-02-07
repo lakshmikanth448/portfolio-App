@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 
@@ -14,16 +14,16 @@
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     User user = (User) session.getAttribute("user");
     if (user == null) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(request.getContextPath() +"/login.jsp");
         return;
     }
 %>
 
 <div class="header">
     Welcome, <%= user.getName() %>
-    <a href="addProject.jsp">Add Project</a>
-    <a href="viewPortfolio">View Portfolio</a>
-    <a href="Logout">Logout</a>
+    <a href="${pageContext.request.contextPath}/addProject.jsp">Add Project</a>
+    <a href="${pageContext.request.contextPath}/viewPortfolio">View Portfolio</a>
+    <a href="${pageContext.request.contextPath}/logout">Logout</a>
 </div>
 
 <div class="container">
@@ -46,3 +46,4 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
 </body>
 </html>
+
