@@ -11,7 +11,7 @@
 <div class="container">
     <h2>Add New Project</h2>
 
-    <form action="${pageContext.request.contextPath}/addProject" method="post">
+    <form action="<%= request.getContextPath() %>/addProject" method="post">
         Project Title:
         <input type="text" name="title" required>
 
@@ -31,9 +31,10 @@
     </form>
 
     <br>
-    <a href="${pageContext.request.contextPath}/dashboard.jsp">Back to Dashboard</a>
+    <a href="<%= request.getContextPath() %>/dashboard.jsp">Back to Dashboard</a>
 </div>
 
 </body>
 </html>
+
 
